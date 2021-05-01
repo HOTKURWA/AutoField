@@ -1,24 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import magnifying_glass from './components/images/magnifying_glass.svg'
+import SelectList from './SelectList/SelectList' 
 
 function App() {
+  const [ inputValue, setInputValue ] = React. useState('');
+  const [ userData, setUserData ] = React. useState('');
+  const [ imageData, setImageData ] = React. useState('');
+  const [ selectedData, setSelectedData ] = React. useState(false);
+
+  const handleChangeInput = ( e : any ) => {
+    setInputValue(e. target. value);
+
+    if (selectedData) 
+      setSelectedData(false);
+  }
+ 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='search_group'>
+
+        <img className='search_img'  role="img" src={magnifying_glass} />
+
+        <input className='search_field' value={inputValue} type="text" placeholder="Search" onChange={handleChangeInput}/>
+
+        { !selectedData && inputValue?
+          <SelectList setSelectedData={setSelectedData} setInputValue={setInputValue}/>
+        :
+          (undefined)
+        }
+
+      </div>
     </div>
   );
 }
