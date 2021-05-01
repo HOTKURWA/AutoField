@@ -1,16 +1,14 @@
 import React from 'react';
 import './App.css';
-import magnifying_glass from './components/images/magnifying_glass.svg'
+import MagnifyingGlass from './components/images/magnifying_glass.svg'
 import SelectList from './SelectList/SelectList' 
 
-function App() {
-  const [ inputValue, setInputValue ] = React. useState('');
-  const [ userData, setUserData ] = React. useState('');
-  const [ imageData, setImageData ] = React. useState('');
-  const [ selectedData, setSelectedData ] = React. useState(false);
+export default function App() {
+  const [ inputValue, setInputValue ] = React.useState('');
+  const [ selectedData, setSelectedData ] = React.useState(false);
 
   const handleChangeInput = ( e : any ) => {
-    setInputValue(e. target. value);
+    setInputValue(e.target.value);
 
     if (selectedData) 
       setSelectedData(false);
@@ -20,9 +18,10 @@ function App() {
     <div className="App">
       <div className='search_group'>
 
-        <img className='search_img'  role="img" src={magnifying_glass} />
-
-        <input className='search_field' value={inputValue} type="text" placeholder="Search" onChange={handleChangeInput}/>
+        <div className='input_field'>
+          <img src={MagnifyingGlass} alt="Have no img"/>
+          <input value={inputValue} type="text" placeholder="Search" onChange={handleChangeInput}/>
+        </div>
 
         { !selectedData && inputValue?
           <SelectList setSelectedData={setSelectedData} setInputValue={setInputValue}/>
@@ -34,5 +33,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
