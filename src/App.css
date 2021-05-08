@@ -3,6 +3,7 @@
   height: 100vh;
   display: flex;
   justify-content: center;
+  padding: 20px;
 }
 
 .search_group {
